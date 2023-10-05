@@ -1,4 +1,4 @@
-# Ex. No: 5 Creating Cursors using PL/SQL
+# Ex. No: 6 Creating Cursors using PL/SQL
 
 ### AIM: To create a cursor using PL/SQL.
 
@@ -9,48 +9,43 @@
 4. Close the cursor
 
 ### Program:
-### Create employee table:
+
+### Create employee table
 ```
-CREATE TABLE employd (
-  empid NUMBER,
-  empname VARCHAR(10),
-  dept VARCHAR(10),
-  salary NUMBER
-);
-select * from employd;
-INSERT INTO employd VALUES (1, 'John Doe', 'Sales', 100000);
-INSERT INTO employd VALUES (2, 'Jane Doe', 'Marketing', 120000);
+CREATE TABLE employee4 (empid NUMBER,empname VARCHAR(10),dept VARCHAR(10),salary NUMBER);
+INSERT INTO employee4 VALUES (1, 'matt', 'IT', 70000);
+INSERT INTO employee4 VALUES (2, 'tristan', 'HR', 000);
+INSERT INTO employee4 VALUES (3, 'chris', 'Marketing', 90000);
+select * from employee4;
 ```
-### PLSQL Cursor code:
+
+### PLSQL Cursor code
 ```
-DECLARE
-   CURSOR employd_cursor IS
-   SELECT empid,empname,dept,salary
-   FROM employd;
-   emp_id NUMBER;
-   emp_name VARCHAR(50);
-   emp_dept VARCHAR(50);
-   emp_salary NUMBER;
-BEGIN
-  OPEN employd_cursor;
-
-  LOOP
-    FETCH employd_cursor INTO emp_id, emp_name, emp_dept, emp_salary;
-
-    EXIT WHEN employd_cursor%NOTFOUND;
-
-    DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_id);
-    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || emp_name);
-    DBMS_OUTPUT.PUT_LINE('Department: ' || emp_dept);
-    DBMS_OUTPUT.PUT_LINE('Salary: ' || emp_salary);
-  END LOOP;
-
-  CLOSE employd_cursor;
-END;
+declare
+cursor employee4_cursor is
+select empid,empname,dept,salary
+from employee4;
+emp_id number;
+emp_name varchar(20);
+emp_dept varchar(20);
+emp_salary number;
+begin
+open employee4_cursor;
+loop
+fetch employee4_cursor into emp_id,emp_name,emp_dept,emp_salary;
+exit when employee4_cursor%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_id);
+DBMS_OUTPUT.PUT_LINE('Employee Name: ' || emp_name);
+DBMS_OUTPUT.PUT_LINE('Department: ' || emp_dept);
+DBMS_OUTPUT.PUT_LINE('Salary: ' || emp_salary);
+end loop;
+close employee4_cursor;
+end;
 /
 ```
+
 ### Output:
-![image](https://github.com/MohammedFaizal05/Ex-no-6-Creating-Cursors-using-PL-SQL/assets/120553195/c301254d-5fce-424c-9c2f-e31a2070170f)
+![image](https://github.com/varshxnx/Ex-no-6-Creating-Cursors-using-PL-SQL/assets/122253525/da2f6427-2ced-4eee-b854-18734d929ece)
 
 ### Result:
-Thus this program executed successfully.
+THE PROGRAM HAS BEEN IMPLEMENTED SUCCESSFULLY
